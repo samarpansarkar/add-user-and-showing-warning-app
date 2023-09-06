@@ -1,10 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
+import AddUser from './Components/AddUser/AddUser';
+import Card from './Components/Card/Card';
+import ErrorModel from './Components/ErrorModel/ErrorModel';
 
 function App() {
   return (
     <div className="App">
-      Starter pack
+      <AddUser/>
+      <Card />
+      <ErrorModel />
     </div>
   );
 }
