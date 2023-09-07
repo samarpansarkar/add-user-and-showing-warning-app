@@ -1,36 +1,27 @@
-import "./App.css";
-import AddUser from "./Components/AddUser/AddUser";
-import ErrorModel from "./Components/ErrorModel/ErrorModel";
-
 import React, { useState } from "react";
-import UserList from "./Components/UsersList/UserList";
+import UsersList from "./components/Users/UsersList";
+import AddUser from "./components/Users/AddUser";
 
-const App = () => {
-  //const [userInput, setUserInput] = useState(null);
+function App() {
+  const [usersList, setUsersList] = useState([]);
 
-  // const userInputHandler=(userData)=>{
-  //   setUserInput(userData);
-  //   console.log('use Input',userInput);
-  // };
-
-  const Data = [];
-
-  const userInputHandler = (userData) => {
-    if (userData) {
-      let userId = userData["userId"];
-      let userAge = +userData["userAge"];
-
-      Data.push({ userId, userAge});
-      //console.log("app.js", Data);
-    }
+  const addUserHandler = (uName, uAge) => {
+    setUsersList((prevUsersList) => {
+      return [
+        ...prevUsersList,
+        { name: uName, age: uAge, id: Math.random().toString() },
+      ];
+    });
   };
 
   return (
-    <div className="App">
-      <AddUser userData={userInputHandler} />
-      <UserList userData={Data} />
-      <ErrorModel />
+    <div>
+      <div>
+        <AddUser onAddUser={addUserHandler} />
+        <UsersList users={usersList} /> 
+      </div>
     </div>
   );
-};
+}
+
 export default App;
